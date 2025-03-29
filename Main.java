@@ -7,11 +7,11 @@ public class Main
         boolean game_over = false;
         Scanner scanner = new Scanner(System.in);
         
-        System.out.println("Choose row and column");
+        System.out.println("Choose starting row and column");
         int st_row = scanner.nextInt();
         int st_column = scanner.nextInt();
 
-        Board board = new Board(30, 30, st_row, st_column);
+        Board board = new Board(10, 10, st_row, st_column);
         board.discover(st_row, st_column);
         board.print();
 

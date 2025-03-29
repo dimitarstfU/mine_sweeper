@@ -8,6 +8,12 @@ public class Board
     Board(int n,int m,int st_row,int st_column)
     {
         board = new Field[n][m];
+        initRandomBoard(n, m, st_row, st_column);
+        fillNei(n, m);
+    }
+
+    void initRandomBoard(int n, int m, int st_row, int st_column)
+    {
         for (int i=0;i<n;i++)
         {
             for (int j=0;j<m;j++) 
@@ -29,11 +35,15 @@ public class Board
                 }
             }
         }
+    }
+    
+    void fillNei(int n, int m)
+    {
         for(int i=0;i<n;i++)
-        {
+        { //populvane na neigbors za vseki field
             for(int j=0; j<m;j++)
             {
-                if(board[i][j] instanceof Empty)
+               if(board[i][j] instanceof Empty)
                 {
                     for(int k=-1;k<2;k++)
                     {
@@ -80,7 +90,14 @@ public class Board
             }   
             return true;//ima bomba
         }
-        field.hidden = false;//nqma bomba i otkrivam samo tova pole
+        if(field instanceof Empty && ((Empty)field).island())
+        {//System.out.println("asd");
+            ((Empty)field).uncoverSurrounding();
+        }
+        else
+        {
+            field.hidden = false;//nqma bomba i otkrivam samo tova pole
+        }
         return false;//nqma bomba
     }    
 }
