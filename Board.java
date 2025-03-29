@@ -5,7 +5,7 @@ import java.util.Random;
 public class Board
 {
     Field[][] board;
-    Board(int n,int m)
+    Board(int n,int m,int st_row,int st_column)
     {
         board = new Field[n][m];
         for (int i=0;i<n;i++)
@@ -14,6 +14,10 @@ public class Board
             {
                 Random rand = new Random();
                 int randomNum = rand.nextInt(100);
+                if(i == st_row && j == st_column)
+                {
+                    randomNum = 3;
+                }
                 if(randomNum >= 90)
                 {
                     board[i][j] = new Mine(true);
