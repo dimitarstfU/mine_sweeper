@@ -17,13 +17,21 @@ public class Main
 
         while(!game_over)
         {
+            if(board.winning())
+            {
+                System.out.println("you won");
+                break;
+            }
             System.out.println("Choose row and column");
             int row = scanner.nextInt();
             int column = scanner.nextInt();
             game_over = board.discover(row, column);
             board.print();
         }
-        System.out.println("game_over");
+        if(game_over)
+        {
+            System.out.println("you lose");
+        }
         scanner.close();
         
     }    

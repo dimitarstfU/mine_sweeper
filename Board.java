@@ -20,11 +20,11 @@ public class Board
             {
                 Random rand = new Random();
                 int randomNum = rand.nextInt(100);
-                if(i == st_row && j == st_column)
+                if((Math.abs(i-st_row) <= 1) && (Math.abs(j-st_column) <= 1))
                 {
-                    randomNum = 3;
+                    randomNum = 3;//nqma da e mine shtoto e mine nad 80
                 }
-                if(randomNum >= 90)
+                if(randomNum >= 95)
                 {
                     board[i][j] = new Mine(true);
                 }
@@ -99,5 +99,19 @@ public class Board
             field.hidden = false;//nqma bomba i otkrivam samo tova pole
         }
         return false;//nqma bomba
-    }    
+    }
+    boolean winning()
+    {
+        for (Field[] fields : board)
+        {
+            for (Field field : fields)
+            {
+                if(field instanceof Empty && field.hidden)
+                {
+                    return false;
+                }    
+            }    
+        }
+        return true;
+    }
 }
